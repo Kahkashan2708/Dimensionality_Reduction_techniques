@@ -35,6 +35,7 @@ This repository focuses on **Feature Extraction** techniques.
 ---
 
 ##  Repository Structure
+```
 Dimensionality-Reduction/
 │
 ├── PCA/ → Principal Component Analysis
@@ -43,7 +44,8 @@ Dimensionality-Reduction/
 ├── Isomap/ → Isomap Algorithm
 ├── t-SNE/ → t-Distributed Stochastic Neighbor Embedding
 ├── UMAP/ → Uniform Manifold Approximation and Projection
-└── README.md 
+└── README.md
+```
 
 
 
