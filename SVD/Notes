@@ -1,0 +1,126 @@
+#  Singular Value Decomposition (SVD) – Notes
+
+##  What is SVD?
+
+**Singular Value Decomposition (SVD)** is a matrix factorization technique used in **Dimensionality Reduction, PCA, Signal Processing, Recommendation Systems, NLP (LSA), and more**.
+
+For any real matrix \( A \) of size \( m \times n \), SVD factorizes it into:
+
+\[
+A = U \Sigma V^T
+\]
+
+Where:
+
+| Matrix | Size | Meaning |
+|--------|------|--------|
+| \( U \) | \( m \times m \) | Left singular vectors (Orthogonal) |
+| \( \Sigma \) | \( m \times n \) | Diagonal matrix with singular values |
+| \( V^T \) | \( n \times n \) | Right singular vectors (Orthogonal) |
+
+> 🔹 Think of SVD as breaking down a matrix into **direction vectors (U and V)** and **importance weights (Σ / singular values)**.
+
+---
+
+##  Geometric Interpretation
+
+- **\(V\)** gives the principal directions in **input space**.
+- **\(U\)** gives the directions in **output space**.
+- **Diagonal entries of \( \Sigma \)** are **singular values** → They tell how much information/variance each direction carries.
+- **Larger singular value → More important direction**.
+
+---
+
+##  Why is SVD Useful?
+
+| Use Case | Explanation |
+|---------|------------|
+| **Dimensionality Reduction** | Keep only top-k singular values → compress data without much loss. |
+| **Noise Reduction** | Small singular values correspond to noise → can be removed. |
+| **PCA Computation** | PCA can be done using SVD instead of covariance matrix. |
+| **Recommendation Systems** | Used in Latent Semantic Analysis / Netflix-style matrix factorization. |
+| **Solving Linear Systems** | Helps solve unstable or non-square systems using pseudo inverse. |
+
+---
+
+##  Types of SVD
+
+###  Full SVD
+\[
+A = U \Sigma V^T \quad \text{(Kept all singular values)}
+\]
+
+###  Reduced / Compact SVD (for compression)
+\[
+A_k = U_k \Sigma_k V_k^T \quad \text{(Keep top k strongest components)}
+\]
+
+> ⚠ **Most real-world applications use Reduced SVD**, not full SVD.
+
+---
+
+##  Low-Rank Approximation (Dimensionality Reduction)
+
+To compress matrix \( A \), keep only top-k singular values:
+
+\[
+A \approx A_k = U_k \Sigma_k V_k^T
+\]
+
+- If \( k \ll \min(m, n) \), then **huge compression** is achieved with minor information loss.
+- This is the **core idea behind PCA and data compression via SVD**.
+
+---
+
+##  Relation to Eigen Decomposition
+
+- **Eigen decomposition works only for square symmetric matrices**.
+- **SVD works for any matrix (even non-square)**.
+- \( U \) = eigenvectors of \( AA^T \)  
+- \( V \) = eigenvectors of \( A^T A \)  
+- Singular values \( \sigma_i = \sqrt{\text{eigenvalues}} \)
+
+---
+
+##  Example (Conceptual)
+
+Let’s say:
+
+\[
+A = \begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 1
+\end{bmatrix}
+\]
+
+After applying SVD:
+
+\[
+A = U \Sigma V^T =
+\underbrace{[\text{Orthonormal Basis}]}_{U}
+\cdot
+\underbrace{[\text{Singular Values}]}_{\Sigma}
+\cdot
+\underbrace{[\text{Orthonormal Basis}]}_{V^T}
+\]
+
+Interpretation:
+- **\( V^T \)** gives main direction in data.
+- **Largest value in Σ** → dominant pattern.
+- **Truncate Σ** → compress data.
+
+---
+
+##  Summary
+
+| Concept | Summary |
+|--------|--------|
+| Formula | \( A = U \Sigma V^T \) |
+| \( U \) | Orthonormal basis for column space |
+| \( \Sigma \) | Singular values (importance of directions) |
+| \( V \) | Orthonormal basis for row space |
+| Key Usage | PCA, LSA, Compression, Noise Removal, Recommenders |
+| Advantage | Works for any matrix (even non-square) |
+
+---
