@@ -121,11 +121,3 @@ Used in fraud detection, fault detection, cybersecurity.
 - Risk of overfitting
 
 ---
-
-## One-Line Definitions
-- **Encoder:** maps input to latent space  
-- **Decoder:** reconstructs input from latent code  
-- **Latent space:** compressed feature representation  
-- **Reconstruction loss:** measures input–output error  
-
---- 
